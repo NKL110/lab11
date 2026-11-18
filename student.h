@@ -40,10 +40,9 @@ public:
 		testId(); testScore(); calGrade();
 	}
 
-	void input(){
-		std::cout << "Enter name: "; std::getline(std::cin >> std::ws, name);
-		std::cout << "Enter id: ";   std::cin >> id; testId();
-		std::cout << "Enter score: ";std::cin >> score; testScore();
+	void input(std::istream& is =std:cin) const {
+		
+		is>>
         calGrade();
 	}
 
@@ -59,12 +58,13 @@ public:
 	void setScore(int s){score = s; testScore();}
     void setGrade(char g){grade=g;}
 	
-	void print() const {
-		std::cout << name << "(" << id << "):" << score << "(" << grade << ")\n";
+	void print(std::ostream& os =std::cout) const {
+		
+		os << name << "(" << id << "):" << score << "(" << grade << ")\n";
 	}
 
 	friend std::ostream& operator<<(std::ostream& os, const student& s) {
-		os << s.name << "(" << s.id << "):" << s.score << "(" << s.grade << ")\n";
+		s.print(os);
 		return os;
 	}
 
